@@ -1,9 +1,9 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+## Writeup Template
+### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
-**Vehicle Detection Project**
+** Vehicle Detection Project**
 
 The goals / steps of this project are the following:
 
@@ -27,10 +27,10 @@ The goals / steps of this project are the following:
 [video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
@@ -81,13 +81,13 @@ The maximum scale was chosen by looking at the test images. The test images cont
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-I am searching over multiple scales and am painting heatmaps in the original image coordinate system. The resulting heatmaps are combined and a threshold of 2 is used to filter detections that have less than 2 responses.
+I am searching over multiple scales and am painting heatmaps in the original image coordinate system. The resulting heatmaps are combined and a threshold of 2 is used to filter detections that have fewer responses.
 
-Before merging:
+Example bounding boxes based on unthresholded detections:
 
 ![alt text][image4]
 
-And after merging overlapping bounding boxes:
+After thresholding lower heatmap values the bounding boxes split or become smaller, even disappear (false positives).
 
 ![alt text][image8]
 
@@ -104,7 +104,7 @@ Here's a [link to my video result](./test_videos_output/project_video.mp4)
 
 I recorded the positions of positive detections in each frame of the video. From the positive detections I created a heatmap. I combine heatmaps over multiple scales and then thresholded that map with a value of 4 to identify vehicle positions. I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap. I then assumed each blob corresponded to a vehicle. I constructed bounding boxes to cover the area of each blob detected.  
 
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+Here's an example image showing the detected (merged) bounding boxes, the underlying heatmap and the labeling image.
 
 ![alt text][image5]
 
@@ -112,7 +112,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ---
 
-###Discussion
+### Discussion
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
